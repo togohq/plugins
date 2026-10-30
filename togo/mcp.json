@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "togo": {
+      "type": "http",
+      "url": "https://mcp.togohq.ai/mcp",
+      "headers": { "X-Togo-Plugin-Version": "1.0.0" }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "togohq",
+  "description": "Togo — product analytics your coding agent can set up, read and govern",
+  "owner": { "name": "Togo", "url": "https://www.togohq.ai" },
+  "plugins": [
+    {
+      "name": "togo",
+      "source": "./togo",
+      "description": "Set Togo analytics up in your app and ask it questions from your coding agent: one project per product, a key per system, events proved before they ship, and trends, funnels and reports from the data."
+    }
+  ]
+}

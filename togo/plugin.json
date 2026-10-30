@@ -1,0 +1,14 @@
+{
+  "name": "togo",
+  "displayName": "Togo",
+  "version": "1.0.0",
+  "description": "Set Togo analytics up in your app and ask it questions from your coding agent: one project per product, a key per system, events proved before they ship, and trends, funnels and reports from the data.",
+  "author": {
+    "name": "Togo",
+    "url": "https://www.togohq.ai"
+  },
+  "homepage": "https://www.togohq.ai",
+  "repository": "https://github.com/togohq/plugins",
+  "license": "Apache-2.0",
+  "keywords": ["analytics", "product-analytics", "mcp", "events", "funnels"]
+}
