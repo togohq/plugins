@@ -1,6 +1,6 @@
 ---
 name: togo-analytics
-description: Use when the user asks a product-analytics question about an app that sends events to Togo — how many, how often, which events, funnels, conversion, retention of a step, who a user is — or asks to declare, describe or merge events or person properties in Togo.
+description: Use when the user asks a product-analytics question about an app that sends events to Togo — how many, how often, which events, funnels, conversion, retention of a step, who a user is — or asks to define, describe or merge events or person properties in Togo (an event definition: what an event means and when it fires).
 ---
 
 # Answering with Togo
@@ -16,12 +16,12 @@ The `togo` MCP server reaches every Togo project the signed-in account can acces
    `get_event` for the properties you can filter or break down by.
 3. **Respect freshness.** Analytics data ends at `analyticsDataThrough`, curated every few hours.
    For "today" or "the last hour", say the data does not cover it yet rather than reporting zero.
-   `verify_tracking` and `list_live_events` read test traffic — use them to check tracking, never
-   to answer a question about real users.
+   `verify_tracking` and `verify_tracking_by_event_ids` check what a test run sent with the test
+   key, and never answer a question about how many users or events there were.
 4. **Read refusals.** A refusal carries a code and often a narrower question to ask instead; ask
    that rather than retrying the same call. `project_not_reachable` lists the projects the account
    can see.
-5. **Writes are real.** `update_event`, `merge_events`, `update_person` and
+5. **Writes are real.** `update_event_definitions`, `merge_events`, `update_person` and
    `update_person_property` change the project for everyone, and a merge cannot be undone: confirm
    with the user before `merge_events`.
 
