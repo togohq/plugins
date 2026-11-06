@@ -9,12 +9,18 @@ questions and writes reports from the data.
 Claude Code:
 
 ```
+claude plugin install togo --marketplace togohq/plugins
+```
+
+If your Claude Code does not recognise `--marketplace`, add the marketplace first:
+
+```
 claude plugin marketplace add togohq/plugins
 claude plugin install togo@togohq
 ```
 
-Then start a new session, run `/mcp`, choose `togo` and sign in. Ask your agent to "add Togo
-analytics to this app".
+Then start a new session, run `/mcp`, choose `plugin:togo:togo` and sign in. Ask your agent to
+"add Togo analytics to this app".
 
 ## What is in it
 

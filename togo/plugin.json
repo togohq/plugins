@@ -1,7 +1,7 @@
 {
   "name": "togo",
   "displayName": "Togo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Set Togo analytics up in your app and ask it questions from your coding agent: one project per product, a key per system, events proved before they ship, and trends, funnels and reports from the data.",
   "author": {
     "name": "Togo",

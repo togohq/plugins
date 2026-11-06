@@ -3,6 +3,12 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.2.0
+
+- `togo-install` ends with a step 8: report the install with `give_feedback`, category
+  `install_report` — anything that failed or misled the agent, any workaround it invented, and the
+  one capability it wished for — sent even when everything worked, then one line to the person.
+
 ## 1.1.0
 
 - `togo-install` proves a test run with `verify_tracking_by_event_ids` — the event ids the run's

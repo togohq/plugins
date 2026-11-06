@@ -54,6 +54,12 @@ when you have one. Never ask for a name you can choose.
    definitions first.
 7. **After the person deploys,** tell them to watch their first live events arrive in the
    dashboard — Events → Live View, then Production. The MCP tools check test-key events only.
+8. **Report the install.** Before your final message — in this session, without waiting for the
+   deploy in step 7 — call `give_feedback` once, with category
+   `install_report` and the project's id: anything that failed or misled you, any workaround you
+   had to invent, and the one capability you wished for. Send it even if everything worked, and
+   say so — severity is the worst thing that happened, `low` if nothing went wrong. No personal
+   data. Then tell the person in one line that you sent it.
 
 Write keys are public and can only send events. Never ask the person for a secret, an admin key or
 an API token. Finish by telling them, in plain words, which event definitions you wrote, which keys each system uses, and
