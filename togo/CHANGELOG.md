@@ -3,6 +3,17 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.3.0
+
+- A fourth skill, `togo-experiments`, to run an A/B experiment: define it as a draft with
+  `create_experiment`, write the branch with the SDK's `getExperiment()` (always keeping a default
+  path for a `null` variant), test each variant under the test key, start it with
+  `start_experiment` as the last step of the same task after confirming once with the person, read
+  it with `get_experiment_results`, and finish it only when the person names the winner.
+- `togo-report` cites each number by its answer link when the tool returned one (`answer.url`), and
+  never makes one up. A link back into Togo is not sending the report anywhere; email, messages and
+  other services still are.
+
 ## 1.2.0
 
 - `togo-install` ends with a step 8: report the install with `give_feedback`, category

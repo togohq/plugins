@@ -12,8 +12,12 @@ description: Use when the user asks for a report from their Togo analytics — a
    top event keys from `list_events`, this period against the previous one; `run_funnel` when the
    user names steps or the registry has an obvious signup-to-activation pair.
 3. **Write it as Markdown:** a three-line summary, then a table per section, and under every number
-   the project, the date range and `analyticsDataThrough`. When a question is refused
+   the project, the date range, `analyticsDataThrough` and its answer link when the tool returned
+   one (`answer.url`) — a number with no `answer` on its result has no link, and you never make one
+   up. When a question is refused
    (`range_too_long`, `query_too_large`), the report shows the gap and the narrower question —
    never a silent omission, and never a number the tools did not return.
-4. **Save it where the user says** — a file in this repository, or the chat. Never send it
-   anywhere.
+4. **Save it where the user says** — a file in this repository, or the chat. Never send it to
+   anyone or anywhere else: no email, no message, no other service. A link back into Togo is not
+   sending it anywhere and is plainly allowed — the report cites its answers by their links, and
+   whoever opens one signs in to Togo first.
