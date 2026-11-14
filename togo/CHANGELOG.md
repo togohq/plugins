@@ -3,6 +3,14 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.4.0
+
+- `togo-install` wires the SDK's `onError` into the app's own error reporting when it has one
+  (Sentry, Bugsnag, Datadog, its own logger), so every event the SDK will not record is reported, in
+  production too.
+- `togo-install` says that an event the SDK dropped before sending never reaches `verify_tracking`,
+  and that the console, like `onError`, names it with its code.
+
 ## 1.3.0
 
 - A fourth skill, `togo-experiments`, to run an A/B experiment: define it as a draft with

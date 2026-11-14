@@ -37,7 +37,9 @@ when you have one. Never ask for a name you can choose.
    every event's event definition written in one `update_event_definitions` call, and profile
    properties with `update_person_property`, before the code; the
    SDK installed with this repository's package manager, `identify()` and profile properties, and
-   events the app really produces — never `test_event`. If this system's language has no Togo SDK,
+   events the app really produces — never `test_event`. If the app already reports errors (Sentry,
+   Bugsnag, Datadog, its own logger), pass `onError` to `init()` and send each error there: the SDK
+   calls it for every event it will not record, in production too. If this system's language has no Togo SDK,
    say so plainly and stop; never hand-roll an HTTP client.
 5. **Prove it.** Run each flow with the test key, call the SDK's `flush()`, then check exactly
    what that run sent. If `track()`, `identify()` and `setPersonProperties()` returned event ids,
@@ -45,7 +47,9 @@ when you have one. Never ask for a name you can choose.
    `filter.deviceId` (the SDK's `getDeviceId()` on the device you ran) and `expectedEventNames`
    (and `expectIdentify`, `expectProfileProperties`). Each event comes back with its diagnostics.
    You are done only when `errorCount`, `warningCount` and `missingCount` are all 0 — otherwise
-   apply each diagnostic's `agentFix`, run the flow again and check the new run. If you cannot run
+   apply each diagnostic's `agentFix`, run the flow again and check the new run. An event the SDK
+   dropped before sending never reaches `verify_tracking`: the console names it with its code, as
+   `onError` does. If you cannot run
    the app, ask the person to click through the flows once.
 6. **Leave the note.** The setup instructions end with a short "Togo analytics" section; fill it
    in and write it to this repository's agent-instructions file — `AGENTS.md`, or the one file
