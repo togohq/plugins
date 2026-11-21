@@ -41,15 +41,17 @@ when you have one. Never ask for a name you can choose.
    Bugsnag, Datadog, its own logger), pass `onError` to `init()` and send each error there: the SDK
    calls it for every event it will not record, in production too. If this system's language has no Togo SDK,
    say so plainly and stop; never hand-roll an HTTP client.
-5. **Prove it.** Run each flow with the test key, call the SDK's `flush()`, then check exactly
-   what that run sent. If `track()`, `identify()` and `setPersonProperties()` returned event ids,
+5. **Prove it.** Run each flow with the test key, call the SDK's `flush()` from the run (never add
+   it to the app's code to make a check pass), then check exactly what that run sent. If `track()`, `identify()` and `setPersonProperties()` returned event ids,
    pass them to `verify_tracking_by_event_ids`. Otherwise call `verify_tracking` with
    `filter.deviceId` (the SDK's `getDeviceId()` on the device you ran) and `expectedEventNames`
    (and `expectIdentify`, `expectProfileProperties`). Each event comes back with its diagnostics.
    You are done only when `errorCount`, `warningCount` and `missingCount` are all 0 — otherwise
    apply each diagnostic's `agentFix`, run the flow again and check the new run. An event the SDK
    dropped before sending never reaches `verify_tracking`: the console names it with its code, as
-   `onError` does. If you cannot run
+   `onError` does. A browser test that intercepts requests (Playwright `page.route` or
+   `context.route`, for any URL) holds the batch sent as a page is left, so events before a
+   navigation go missing: call `page.unrouteAll()` before that click. If you cannot run
    the app, ask the person to click through the flows once.
 6. **Leave the note.** The setup instructions end with a short "Togo analytics" section; fill it
    in and write it to this repository's agent-instructions file — `AGENTS.md`, or the one file
@@ -61,7 +63,9 @@ when you have one. Never ask for a name you can choose.
 8. **Report the install.** Before your final message — in this session, without waiting for the
    deploy in step 7 — call `give_feedback` once, with category
    `install_report` and the project's id: anything that failed or misled you, any workaround you
-   had to invent, and the one capability you wished for. Send it even if everything worked, and
+   had to invent, and the one capability you wished for. For each problem, say what you saw apart
+   from what you concluded: how you observed it (the test tool, what it intercepted, the browser or
+   runtime, the SDK version) and whether it still happens without your workaround. Send it even if everything worked, and
    say so — severity is the worst thing that happened, `low` if nothing went wrong. No personal
    data. Then tell the person in one line that you sent it.
 

@@ -3,6 +3,22 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.5.0
+
+- `togo-analytics` names events and properties exactly as the app sends them — case, spaces and
+  punctuation included — as `list_events` and `get_event` give them. "Plan Type" and "plan_type" are
+  two properties until someone merges them.
+- `togo-analytics` suggests merges and never makes them unasked: a name marked `looksLike` is put
+  to the person with its evidence, then merged with `merge_events` or the new `merge_properties`
+  only on a yes.
+- `togo-install` proves tracking by calling `flush()` from the test run, never by adding it to the
+  app's code, and says that a browser test intercepting requests (Playwright `page.route` or
+  `context.route`) holds the batch sent as a page is left — call `page.unrouteAll()` before that
+  click.
+- `togo-install` asks feedback to separate what was seen from what was concluded: the test tool and
+  what it intercepted, the browser or runtime, the SDK version, and whether the problem remains
+  without the workaround.
+
 ## 1.4.0
 
 - `togo-install` wires the SDK's `onError` into the app's own error reporting when it has one

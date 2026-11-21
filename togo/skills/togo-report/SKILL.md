@@ -9,7 +9,7 @@ description: Use when the user asks for a report from their Togo analytics — a
    the write key in this codebase, or ask. Default the period to the last complete week in the
    project's reporting time zone, from `get_project`.
 2. **Gather.** `get_metric` for the platform metrics the project has mapped; `get_trend` for its
-   top event keys from `list_events`, this period against the previous one; `run_funnel` when the
+   top events from `list_events`, this period against the previous one; `run_funnel` when the
    user names steps or the registry has an obvious signup-to-activation pair.
 3. **Write it as Markdown:** a three-line summary, then a table per section, and under every number
    the project, the date range, `analyticsDataThrough` and its answer link when the tool returned
