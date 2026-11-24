@@ -35,12 +35,31 @@ when you have one. Never ask for a name you can choose.
    don't use it and don't mention it.
 4. **Follow the setup instructions.** Call `get_setup_instructions` for the project and follow it to the end:
    every event's event definition written in one `update_event_definitions` call, and profile
-   properties with `update_person_property`, before the code; the
+   properties in one `update_property_definitions` call (scope `person`), before the code; the
    SDK installed with this repository's package manager, `identify()` and profile properties, and
    events the app really produces — never `test_event`. If the app already reports errors (Sentry,
    Bugsnag, Datadog, its own logger), pass `onError` to `init()` and send each error there: the SDK
    calls it for every event it will not record, in production too. If this system's language has no Togo SDK,
    say so plainly and stop; never hand-roll an HTTP client.
+
+   **What a definition says.** An analyst — a person or an agent — reads it to segment and build
+   funnels, so write it for them:
+   - An event's `description`: what happened, for the user and for the business, in plain words;
+     where in the product it happens (the screen, flow or product area); which event usually comes
+     before it and which after; how often one user sends it (once ever, once per visit, or many
+     times); and whether more of it is good or bad. Put the exact moment it fires in `firesWhen`,
+     not here.
+   - A property's `description`: what the value means and its unit; what each value means when
+     there is a fixed set; whether it identifies a person or an account; whether it is useful for
+     breaking results down or filtering; and what a missing value means.
+   - A property is defined once, by name, for every event that sends it. Give `type` and
+     `description` the first time; on another event, give only its `name` (with `required` and a
+     `note` if they apply).
+   - `required: true` only when every send of that event carries the property. A missing required
+     property is reported, never dropped, so mark it to catch the bug — not to filter data.
+   - A `note` only where the property means something particular on one event — a duration that is
+     one step on one event and the whole flow on another. Most properties have none.
+
 5. **Prove it.** Run each flow with the test key, call the SDK's `flush()` from the run (never add
    it to the app's code to make a check pass), then check exactly what that run sent. If `track()`, `identify()` and `setPersonProperties()` returned event ids,
    pass them to `verify_tracking_by_event_ids`. Otherwise call `verify_tracking` with
@@ -59,7 +78,14 @@ when you have one. Never ask for a name you can choose.
    the section if it is already there. It is how the next feature's author knows to write event
    definitions first.
 7. **After the person deploys,** tell them to watch their first live events arrive in the
-   dashboard — Events → Live View, then Production. The MCP tools check test-key events only.
+   dashboard — Events → Live View, then Production. `verify_tracking` checks test-key events only.
+   Once production traffic has been curated — a few hours after the deploy — call
+   `list_tracking_issues`: what real users' devices sent wrong in the last 7 days, the same
+   diagnostics with the same `agentFix`, plus how often, from which platform and app version. It is
+   production after curation, hours old; `verify_tracking` is a test run, now. Fix what it lists the
+   way you fixed the test run, and confirm each fix with `verify_tracking`. If you are still in the
+   session, do it then; otherwise say in your final message that it is the check to run after the
+   deploy.
 8. **Report the install.** Before your final message — in this session, without waiting for the
    deploy in step 7 — call `give_feedback` once, with category
    `install_report` and the project's id: anything that failed or misled you, any workaround you

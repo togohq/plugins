@@ -3,6 +3,21 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.6.0
+
+- Both skills name the renamed property tools: `list_properties` (event or person scope) in place
+  of `list_person_properties`, and `update_property_definitions` in place of
+  `update_person_property`.
+- `togo-install` and `togo-analytics` say what a definition should hold for the next analyst: an
+  event's description (what happened, where, before and after, how often, good or bad), a
+  property's description (meaning and unit, its values, whether it identifies someone, whether to
+  break down by it), when a property is `required`, and when it needs a per-event `note`. A
+  property is defined once and listed by name on every other event that sends it.
+- `togo-install` ends with `list_tracking_issues` once production traffic is curated, and
+  `togo-analytics` checks it when a number looks wrong: what real users' devices sent wrong in the
+  last 7 days, with platform, app version and a fix. `verify_tracking` stays the check for a test
+  run, now.
+
 ## 1.5.0
 
 - `togo-analytics` names events and properties exactly as the app sends them — case, spaces and
