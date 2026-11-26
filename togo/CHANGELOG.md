@@ -3,6 +3,12 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.6.2
+
+- `togo-experiments` says an iOS or Android app, or a Solar2D game, chooses its first screen with
+  `cachedExperiment()`, the answer stored on the device, and names the experiment in the SDK's
+  `experiments` option so it is fetched before the launch that needs it.
+
 ## 1.6.1
 
 - `togo-install` and `togo-analytics` name where each SDK is set up, not only `init()`: `init()` in

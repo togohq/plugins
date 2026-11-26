@@ -20,7 +20,10 @@ cookie: Togo decides, deterministically, and that is what makes the result reada
    `if (result.variant === 'b') renderNew(); else renderCurrent();`
 3. **Call it where the code branches**, never in a layout or a component mounted on every page.
    The first call records the person as exposed, so calling it early counts people who never saw
-   the change.
+   the change. An iOS or Android app, or a Solar2D game, choosing its **first screen** reads
+   `cachedExperiment()` instead: the answer stored on the device, at once and with no network, or
+   none on a first launch, when the default path runs. Name the experiment in the SDK's
+   `experiments` option so the answer is fetched before the launch that needs it.
 4. **Test each variant** under the test key. Force one with `set_experiment_test_variant`, run the
    flow, and call the SDK's `flush()`. Then `verify_tracking` with `filter.deviceId` and
    `expectExperiments` shows the assignment each request received; `$experiment_entered` is the
