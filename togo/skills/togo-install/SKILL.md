@@ -38,8 +38,10 @@ when you have one. Never ask for a name you can choose.
    properties in one `update_property_definitions` call (scope `person`), before the code; the
    SDK installed with this repository's package manager, `identify()` and profile properties, and
    events the app really produces — never `test_event`. If the app already reports errors (Sentry,
-   Bugsnag, Datadog, its own logger), pass `onError` to `init()` and send each error there: the SDK
-   calls it for every event it will not record, in production too. If this system's language has no Togo SDK,
+   Bugsnag, Datadog, its own logger), pass `onError` where the SDK is set up and send each error
+   there — `init()` in browser and Node.js code, `TogoClientOptions.OnError` in .NET, and
+   `TogoConfig` passed to `Togo.setup()` in an iOS or Android app: the SDK calls it for every event
+   it will not record, in production too. If this system's language has no Togo SDK,
    say so plainly and stop; never hand-roll an HTTP client.
 
    **What a definition says.** An analyst — a person or an agent — reads it to segment and build

@@ -9,7 +9,8 @@ The `togo` MCP server reaches every Togo project the signed-in account can acces
 `list_projects` and `create_project` needs a `projectId`.
 
 1. **Pick the project from the code, never by guessing.** Call `list_projects`, then search this
-   codebase for the write key passed to the Togo SDK's `init()`. A key belongs to exactly one
+   codebase for the write key the Togo SDK is set up with — `init()` on the web and in Node.js,
+   `TogoClientOptions` in .NET, `Togo.setup()` in an iOS or Android app. A key belongs to exactly one
    project — use that project's id. If no key matches, or there is no code to search, ask the user
    which project they mean.
 2. **Name events and properties exactly as the app sends them**, as `list_events` and

@@ -3,6 +3,13 @@
 All notable changes to the Togo plugin. The format follows Keep a Changelog, and the plugin uses
 semantic versioning.
 
+## 1.6.1
+
+- `togo-install` and `togo-analytics` name where each SDK is set up, not only `init()`: `init()` in
+  browser and Node.js code, `TogoClientOptions` in .NET, and `TogoConfig` passed to `Togo.setup()`
+  in an iOS or Android app. `togo-install` passes `onError` there, and `togo-analytics` finds the
+  project's write key there.
+
 ## 1.6.0
 
 - Both skills name the renamed property tools: `list_properties` (event or person scope) in place
